@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="carousel.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <ul><!--轮播图片-->
+                <li><img src="images/1.jpg" alt=""></li>
+                <li><img src="images/1.jpg" alt=""></li>
+                <li><img src="images/1.jpg" alt=""></li>
+                <li><img src="images/1.jpg" alt=""></li>
+                <li><img src="images/1.jpg" alt=""></li>
+            </ul>
+            <ol><!--下方小图标-->
+                <li class="point">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+            <!-- 左右箭头 -->
+            <div class="left">
+                <img src="images/l.png" alt="">
+            </div>
+            <div class="right">
+                <img src="images/r.png" alt="">
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function(){
+        //设置定时器，累加器
+        //全局变量，不可写在轮播函数中
+        var timer = null;
+        var num = 0;
+        // 轮播动画函数
+        function play(){
+            clearInterval(timer);
+            timer = setInterval(function(){
+                num ++;
+                if (num > 4){
+                    num = 0;
+                }
+                $('ul').animate({left:- num * 500})
+                $('ol li').eq(num).addClass('point').siblings().removeClass('point')
+            },5000)//5s滚动下一张，可修改时间间隔
+        }
+        //运行函数
+        play();
+
+        //鼠标移上图片暂停轮播，出现左右箭头
+        //选择器必须选择外层div.box，不能选择ul,否则会出现鼠标移上箭头时1.ul图层没有鼠标移入（ul和箭头有定位不在一图层）2.箭头元素闪烁(因为鼠标移出ul层，display在none和block之间不断切换)
+        $('.box').hover(function(){
+            clearInterval(timer);
+            $('.left, .right').show();
+        },function(){
+            play();
+            $('.left, .right').hide();
+        })
+
+        //点击右箭头图片播放下一张
+        $('.right').click(function(){
+            clearInterval(timer);
+            num ++;
+            if (num > 4){
+                num = 0;
+            }
+            $('ul').animate({left:- num * 500})
+            $('ol li').eq(num).addClass('point').siblings().removeClass('point')
+            //鼠标一直停留在箭头上时仍会自动轮播
+            //如鼠标停留在箭头不想图片轮播，删除下面play();
+            play();
+        })
+
+        //点击左箭头图片播放上一张
+        $('.left').click(function(){
+            clearInterval(timer);
+            num --;
+            if (num < 0){
+                num = 4;
+            }
+            $('ul').animate({left:-num * 500})
+            $('ol li').eq(num).addClass('point').siblings().removeClass('point')
+            //鼠标一直停留在箭头上时仍会自动轮播
+            //如鼠标停留在箭头不想图片轮播，删除下面play();
+            play();
+        })
+
+        //鼠标移上数字小图标图片和数字图标自动换为对应那张
+        $('ol li').hover(function(){
+            clearInterval(timer);
+            $(this).addClass('point').siblings().removeClass('point')
+            $('ul').stop().animate({left:- ( $(this).index() ) * 500})
+        },function(){
+            //鼠标移出后从当前选中的那张继续轮播
+            num = $(this).index();
+            play();
+        })
+    })      
+    </script>
+</body>
+</html>
