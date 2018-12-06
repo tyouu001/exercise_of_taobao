@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选按钮&多选改变样式功能</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+        width: 160px;
+        padding: 10px;
+        margin: 10px;
+        background: #ddd;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+    .drink li:first-child {
+        background: #bbb;
+        font-weight: bolder;
+    }
+    li input {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    button {
+        padding: 10px;
+        margin: 20px;
+        color: #28289E;
+        background: #ddd;
+        border: 2px solid lightblue;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+    }
+    .food span {
+        float: right;
+    }
+    .active {
+        background: #54B5EC;
+        color: #fff;
+    }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <ul class="drink">
+        1.请选择您要购买的饮料：
+        <li>
+            <input class="all" type="checkbox" name="drink" value="all" >饮料全选
+        </li>
+        <li>
+            <input type="checkbox" name="drink" value="coffee">咖啡
+        </li>
+        <li>
+            <input type="checkbox" name="drink" value="milk">牛奶
+        </li>
+        <li>
+            <input type="checkbox" name="drink" value="blacktea">红茶
+        </li>
+    </ul>
+    <button>BUY</button>
+    <script>
+        $(document).ready(function(){
+            $('.all').change(function(){
+                //用prop()返回true或false，用attr()返回都是checked
+                if ( $('.all').prop('checked') ){
+                    //设置时还是用prop()
+                    $('.drink input').prop('checked',true)
+                }else{
+                    $('.drink input').prop('checked',false)
+                }
+            })
+            
+        })
+    </script>
+
+    <ul class="food">
+        2.请选择要购买的：
+        <li>面包<span>￥200</span></li>
+        <li>牛奶<span>￥200</span></li>
+        <li>包子<span>￥200</span></li>
+        <li>豆浆<span>￥200</span></li>
+        <li>可乐<span>￥200</span></li>
+        <li>面条<span>￥200</span></li>
+    </ul>
+    <button>BUY</button>
+    <script>
+    $(document).ready(function(){
+        $('.food li').click(function(){
+            //简单写法直接用toggleClass()变换className
+            //$(this).toggleClass('active')
+
+            //用hasClass()直接判断有没有该类名
+            //用attr('class')==''判断,必须写全类名(1个以上),否则不能识别是否有
+            if ( $(this).hasClass('active') ) {
+                $(this).removeClass('active')
+            }else{
+                $(this).addClass('active')
+            }
+        })
+    })
+    </script>
+</body>
+</html>
