@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.wrapper {
+    width: 300px;
+    height: 235px;
+    margin: 50px auto;
+}
+.box {
+    width: 270px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-left: 10px;
+}
+.div1, .div2, .div3, .div4, .div5, .div6, .div7, .div8, .div9 {
+    float: left;
+}
+.div1, .div3, .div4, .div6, .div7, .div9 {
+    margin-top: 25px;
+}
+.div1, .div4, .div7 {
+    width: 10px;
+    height: 10px;
+     /* background: radial-gradient(#fff 70.71%, lightblue 70.71%);标准的语法 */
+}
+/*标签凹圆角*/
+.div1 {background-image: radial-gradient(10px at 0px 0px, #fff 10px, pink 10px);}
+.div4 {background-image: radial-gradient(10px at 0px 0px, #fff 10px, lightblue 10px);}
+.div7 {background-image: radial-gradient(10px at 0px 0px, #fff 10px, lightgreen 10px);}
+
+.div2, .div5, .div8 {
+    width: 60px;
+    height: 35px;
+    border-radius: 10px 10px 0 0;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+}
+.div2 {background: pink;}
+.div5 {background: lightblue;}
+.div8 {background: lightgreen;}
+
+.div3, .div6, .div9 {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+}
+.div3 {background-image: radial-gradient(10px at 10px 0px, #fff 10px, pink 10px);}
+.div6 {background-image: radial-gradient(10px at 10px 0px, #fff 10px, lightblue 10px);}
+.div9 {background-image: radial-gradient(10px at 10px 0px, #fff 10px, lightgreen 10px);}
+
+.text {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+.div11 {background: pink;}
+.div22 {background: lightblue;}
+.div33 {background: lightgreen;}
+

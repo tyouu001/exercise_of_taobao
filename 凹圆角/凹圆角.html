@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>凹圆角</title>
+    <link rel="stylesheet" href="凹圆角.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <div class="div1"></div>
+            <div class="div2" style="color:#000">标签1</div>
+            <div class="div3"></div>
+
+            <div class="div4"></div>
+            <div class="div5">标签2</div>
+            <div class="div6"></div>
+
+            <div class="div7"></div>
+            <div class="div8">标签3</div>
+            <div class="div9"></div>
+        </div>
+        <div class="text div11">文本1文本1文本1文本1文本1文本1文本1文本1文本1文本1</div>
+        <div class="text div22" style="display: none;">文本2文本2文本2文本2文本2文本2文本2文本2文本2文本2</div>
+        <div class="text div33" style="display: none;">文本3文本3文本3文本3文本3文本3文本3文本3文本3文本3</div>
+    </div>
+    <script>
+    $('.div2, .div5, .div8').click(function(){
+        //点击后标签字颜色变深
+        $(this).css('color','#000').siblings().css('color','#666')
+        //点击后显示对应文本框内容
+        //html布局太乱所以选择器都得加上
+        $('.text').eq( $(this).index('.div2, .div5, .div8') ).show().siblings('.text').hide()
+    })
+    </script>
+        
+</body>
+</html>
